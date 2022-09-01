@@ -18,6 +18,9 @@ var rollbar = new Rollbar({
 
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
+rollbar.error('an error happened')
+rollbar.critical('this is critical!')
+rollbar.warning('this is just a warning, beware!')
 
 const students = ['Jimmy', 'Timothy', 'Jimothy']
 
@@ -56,6 +59,12 @@ app.delete('/api/students/:index', (req, res) => {
     students.splice(targetIndex, 1)
     res.status(200).send(students)
 })
+
+try {
+    nonExistentFunction()
+} catch(error) {
+    console.error(error)
+}
 
 
 
